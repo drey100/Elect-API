@@ -4,11 +4,11 @@
 ═══════════════════════════════════════════════════════════ */
 var EB_API = (function() {
   // ✏️ Mettre ici l'URL de ton backend déployé
-  var BASE = 'https://electrabenin-api.up.railway.app';
+  var BASE = 'https://electrabenin-api.onrender.com';
 
   // En local (Live Server), utilise le backend local automatiquement
   if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-    BASE = 'http://localhost:3000';
+    BASE = 'http://localhost:5000';
   }
 
   return {
