@@ -86,6 +86,8 @@ app.get('/api/pubs', async (req, res) => {
         AND (expires IS NULL OR expires > CURRENT_DATE)
       ORDER BY created_at DESC
     `);
+    // Cache 2 minutes côté client — accélère les rechargements
+    res.set('Cache-Control', 'public, max-age=120');
     res.json(rows);
   } catch(e) { res.status(500).json({ error: e.message }); }
 });
@@ -103,6 +105,7 @@ app.get('/api/pubs/all', requireAuth, async (req, res) => {
       GROUP BY p.id
       ORDER BY p.created_at DESC
     `);
+    res.set('Cache-Control', 'no-store');
     res.json(rows);
   } catch(e) { res.status(500).json({ error: e.message }); }
 });
